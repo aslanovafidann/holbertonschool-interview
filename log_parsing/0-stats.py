@@ -35,9 +35,9 @@ def parse_logs():
             line_count += 1
             tokens = line.split()
 
-            # Ensure there are enough tokens to read status code and file size
+            # Ensure there are enough tokens to read status and size
             if len(tokens) >= 2:
-                # Extract file size and status code from the end of the format
+                # Extract file size and status code from the end
                 file_size_str = tokens[-1]
                 status_code_str = tokens[-2]
 
@@ -55,11 +55,11 @@ def parse_logs():
             if line_count % 10 == 0:
                 print_stats(total_size, status_counts)
 
-        # Print final metrics if the stream completes cleanly without Ctrl+C
+        # Print final metrics if the stream completes cleanly
         print_stats(total_size, status_counts)
 
     except KeyboardInterrupt:
-        # Handle Ctrl+C interruptions cleanly by outputting stats and re-raising
+        # Handle Ctrl+C interruptions cleanly and re-raise
         print_stats(total_size, status_counts)
         raise
 
